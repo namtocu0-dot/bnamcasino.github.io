@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tài Xỉu Online - VIP</title>
+    <link rel="stylesheet" href="xiutai.css"> 
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;800&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="background-wrapper">
+        <div class="game-container">
+            
+            <header class="game-header">
+                <h1 class="game-title">TÀI XỈU VIP</h1>
+                <div id="balance" class="user-balance">
+                    Số dư: <span id="current-balance">0</span> VND 💰
+                </div>
+                <button class="btn btn-deposit" onclick="openDepositModal()">NẠP TIỀN</button>
+            </header>
+
+            <main class="game-main">
+                
+                <div class="bet-control-area">
+                    <input type="number" id="bet-input" class="input-field bet-input" 
+                           placeholder="Nhập số tiền cược (Tối thiểu 10K)" value="50000" min="10000">
+                    <button class="btn btn-clear-bet" onclick="clearBet()">Xóa Cược</button>
+                </div>
+                
+                <section id="game-board" class="betting-area">
+                    
+                    <div class="bet-option tài" onclick="placeBet('tài')">
+                        <i class="icon-tai">⭐</i> 
+                        <h2>TÀI</h2>
+                        <p>Tổng từ 11 đến 17</p>
+                        <span class="bet-amount" id="bet-tài">0</span>
+                        <button class="btn btn-bet">Cược Tài</button>
+                    </div>
+
+                    <div class="bet-option xỉu" onclick="placeBet('xỉu')">
+                        <i class="icon-xiu">🌙</i> 
+                        <h2>XỈU</h2>
+                        <p>Tổng từ 4 đến 10</p>
+                        <span class="bet-amount" id="bet-xỉu">0</span>
+                        <button class="btn btn-bet">Cược Xỉu</button>
+                    </div>
+                </section>
+
+                <div class="game-and-history-wrapper">
+                    
+                    <section id="result" class="result-area">
+                        <div class="dice-display">
+                            
+                            <div class="shake-area">
+                                
+                                <div class="dice-set-container" id="dice-set-container">
+                                    <img id="dice-1" src="dice_default.png" alt="Dice 1" class="dice-image">
+                                    <img id="dice-2" src="dice_default.png" alt="Dice 2" class="dice-image">
+                                    <img id="dice-3" src="dice_default.png" alt="Dice 3" class="dice-image">
+                                </div>
+                                
+                                <div class="dice-cup" id="dice-cup" 
+                                    draggable="true" 
+                                    ondragstart="dragStart(event)" 
+                                    ontouchstart="touchStart(event)">
+                                    <p class="cup-text">SẴN SÀNG LẮC</p>
+                                </div>
+
+                            </div>
+
+                        </div>
+                        
+                        <p id="timer-message" class="timer-message"></p>
+                        
+                        <p id="game-status" class="game-message">Hãy nhập số tiền cược, đặt cược và bấm **TUNG XÚC XẮC**!</p>
+                        <button class="btn btn-roll" id="roll-button" onclick="handleRollButtonClick()">TUNG XÚC XẮC</button>
+                    </section>
+                    
+                    <section id="history-board" class="history-area">
+                        <h3>LỊCH SỬ KẾT QUẢ</h3>
+                        <div id="history-list" class="history-list">
+                            </div>
+                    </section>
+
+                </div>
+            </main>
+        </div>
+    </div>
+
+    <div id="deposit-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-button" onclick="closeDepositModal()">&times;</span>
+            <h2>NẠP TIỀN</h2>
+            <p>Chọn phương thức nạp tiền và số tiền bạn muốn nạp.</p>
+            <div class="deposit-options">
+                <button class="btn btn-payment">MOMO</button>
+                <button class="btn btn-payment">ZALOPAY</button>
+                <button class="btn btn-payment">NGÂN HÀNG</button>
+            </div>
+            <input type="number" id="deposit-amount" placeholder="Nhập số tiền..." class="input-field">
+            <button class="btn btn-confirm-deposit" onclick="processDeposit()">Xác Nhận Nạp Tiền</button>
+        </div>
+    </div>
+
+    <script src="xiutai.js"></script>
+</body>
+</html>
